@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -87,20 +88,47 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener onBtnShowModifyClicked = view -> {
-            View itemView = (View)view.getParent();
+            View itemView = (View) view.getParent();
 
-            itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.GONE);
-            itemView.findViewById(R.id.item_todo__editTextTitle).setVisibility(View.VISIBLE);
+            TextView textViewTitle = itemView.findViewById(R.id.item_todo__textViewTitle);
+            textViewTitle.setVisibility(View.GONE);
 
-            Toast.makeText(this, "수정시작", Toast.LENGTH_SHORT).show();
+            itemView.findViewById(R.id.item_todo__btnShowModify).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__btnDelete).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__btnDetail).setVisibility(View.GONE);
+
+            EditText editTextTitle = itemView.findViewById(R.id.item_todo__editTextTitle);
+            editTextTitle.setText(textViewTitle.getText().toString().trim());
+            editTextTitle.setVisibility(View.VISIBLE);
+
+            itemView.findViewById(R.id.item_todo__btnCancelModify).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnModify).setVisibility(View.VISIBLE);
         };
 
         View.OnClickListener onBtnModifyClicked = view -> {
-            Toast.makeText(this, "수정완료", Toast.LENGTH_SHORT).show();
+            View itemView = (View) view.getParent();
+
+            itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnShowModify).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnDelete).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnDetail).setVisibility(View.VISIBLE);
+
+            itemView.findViewById(R.id.item_todo__editTextTitle).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__btnCancelModify).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__btnModify).setVisibility(View.GONE);
         };
 
         View.OnClickListener onBtnCancelModifyClicked = view -> {
-            Toast.makeText(this, "수정취소", Toast.LENGTH_SHORT).show();
+            View itemView = (View) view.getParent();
+
+            itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnShowModify).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnDelete).setVisibility(View.VISIBLE);
+            itemView.findViewById(R.id.item_todo__btnDetail).setVisibility(View.VISIBLE);
+
+            itemView.findViewById(R.id.item_todo__editTextTitle).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__btnCancelModify).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__btnModify).setVisibility(View.GONE);
         };
 
         todoAdapter = new TodoAdapter(todos, onBtnDeleteClicked, onBtnDetailClicked, onBtnShowModifyClicked, onBtnModifyClicked, onBtnCancelModifyClicked);
