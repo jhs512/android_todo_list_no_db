@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -53,15 +55,21 @@ public class TodoAdapter extends BaseAdapter {
 
             viewHolder = new ViewHolder();
 
+            // 일반모드 일 때 보여야 하는 요소
             viewHolder.textViewId = convertView.findViewById(R.id.item_todo__textViewId);
+            viewHolder.textViewId.setOnClickListener(onBtnDetailClicked);
+
             viewHolder.textViewTitle = convertView.findViewById(R.id.item_todo__textViewTitle);
+            viewHolder.textViewTitle.setOnClickListener(onBtnDetailClicked);
+
             viewHolder.btnDelete = convertView.findViewById(R.id.item_todo__btnDelete);
             viewHolder.btnDelete.setOnClickListener(onBtnDeleteClicked);
 
             viewHolder.btnDetail = convertView.findViewById(R.id.item_todo__btnDetail);
             viewHolder.btnDetail.setOnClickListener(onBtnDetailClicked);
-            viewHolder.textViewId.setOnClickListener(onBtnDetailClicked);
-            viewHolder.textViewTitle.setOnClickListener(onBtnDetailClicked);
+
+            // 수정모드 일 때 보여야 하는 요소
+            viewHolder.editTextTitle = convertView.findViewById(R.id.item_todo__editTextTitle);
 
             viewHolder.btnShowModify = convertView.findViewById(R.id.item_todo__btnShowModify);
             viewHolder.btnShowModify.setOnClickListener(onBtnShowModifyClicked);
@@ -80,15 +88,17 @@ public class TodoAdapter extends BaseAdapter {
         Todo todo = todos.get(position);
 
         viewHolder.textViewId.setText(todo.getId() + "");
-        viewHolder.textViewTitle.setText(todo.getTitle());
-
-        viewHolder.btnDelete.setTag(position);
-
-        viewHolder.btnDetail.setTag(position);
         viewHolder.textViewId.setTag(position);
+
+        viewHolder.textViewTitle.setText(todo.getTitle());
         viewHolder.textViewTitle.setTag(position);
 
+        viewHolder.btnDelete.setTag(position);
+        viewHolder.btnDetail.setTag(position);
+
         viewHolder.btnShowModify.setTag(position);
+
+        viewHolder.editTextTitle.setText(todo.getTitle());
         viewHolder.btnModify.setTag(position);
         viewHolder.btnCancelModify.setTag(position);
 
@@ -98,11 +108,12 @@ public class TodoAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView textViewId;
         TextView textViewTitle;
-        TextView btnDelete;
-        TextView btnDetail;
+        Button btnDelete;
+        Button btnDetail;
 
-        TextView btnShowModify;
-        TextView btnModify;
-        TextView btnCancelModify;
+        EditText editTextTitle;
+        Button btnShowModify;
+        Button btnModify;
+        Button btnCancelModify;
     }
 }

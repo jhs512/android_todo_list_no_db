@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener onBtnShowModifyClicked = view -> {
+            View itemView = (View)view.getParent();
+
+            itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.GONE);
+            itemView.findViewById(R.id.item_todo__editTextTitle).setVisibility(View.VISIBLE);
+
             Toast.makeText(this, "수정시작", Toast.LENGTH_SHORT).show();
         };
 
