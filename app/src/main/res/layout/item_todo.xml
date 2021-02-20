@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_todo__textViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:text="번호"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_todo__textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:layout_weight="1"
+        android:text="제목"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/item_todo__editTextTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:layout_weight="1"
+        android:text="제목"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/item_todo__btnShowModify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:minWidth="0sp"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/item_todo__btnModify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:minWidth="0sp"
+        android:visibility="gone"
+        app:icon="@drawable/ic_baseline_edit_attributes_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/item_todo__btnCancelModify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:minWidth="0sp"
+        android:visibility="gone"
+        app:icon="@drawable/ic_baseline_cancel_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/item_todo__btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:minWidth="0sp"
+        app:icon="@drawable/ic_baseline_delete_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/item_todo__btnDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5sp"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:minWidth="0sp"
+        app:icon="@drawable/ic_baseline_assignment_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp" />
+</LinearLayout>
