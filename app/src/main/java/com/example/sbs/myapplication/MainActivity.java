@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeTestData() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2; i++) {
             addTodo("할일 " + (i + 1));
         }
     }
@@ -109,17 +109,32 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener onBtnModifyClicked = view -> {
-            int articleIndex = (int)view.getTag();
-            todos.get(articleIndex).setView__modifyMode(false);
+            int todoIndex = (int)view.getTag();
+            todos.get(todoIndex).setView__modifyMode(false);
 
             View itemView = (View) view.getParent();
 
-            itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.VISIBLE);
+            TextView textViewTitle = itemView.findViewById(R.id.item_todo__textViewTitle);
+            EditText editTextTitle = itemView.findViewById(R.id.item_todo__editTextTitle);
+
+            if ( editTextTitle.getText().toString().trim().length() == 0 ) {
+                Toast.makeText(this, "할일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                editTextTitle.requestFocus();
+
+                return;
+            }
+
+            String newTitle = editTextTitle.getText().toString().trim();
+
+            textViewTitle.setText(newTitle);
+            todos.get(todoIndex).setTitle(newTitle);
+
+            textViewTitle.setVisibility(View.VISIBLE);
             itemView.findViewById(R.id.item_todo__btnShowModify).setVisibility(View.VISIBLE);
             itemView.findViewById(R.id.item_todo__btnDelete).setVisibility(View.VISIBLE);
             itemView.findViewById(R.id.item_todo__btnDetail).setVisibility(View.VISIBLE);
 
-            itemView.findViewById(R.id.item_todo__editTextTitle).setVisibility(View.GONE);
+            editTextTitle.setVisibility(View.GONE);
             itemView.findViewById(R.id.item_todo__btnCancelModify).setVisibility(View.GONE);
             itemView.findViewById(R.id.item_todo__btnModify).setVisibility(View.GONE);
         };
