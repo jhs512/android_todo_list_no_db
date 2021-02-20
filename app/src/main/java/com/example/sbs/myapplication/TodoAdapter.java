@@ -102,6 +102,18 @@ public class TodoAdapter extends BaseAdapter {
         viewHolder.btnModify.setTag(position);
         viewHolder.btnCancelModify.setTag(position);
 
+        // 역할면에서 현재 수정모드여야 하는데, 배우가 수정모드가 아닐때
+        if (todo.isView__modifyMode() && viewHolder.textViewTitle.getVisibility() == View.VISIBLE) {
+            // 강제로 수정버튼을 눌러서 수정모드로 바꿔준다.
+            viewHolder.btnShowModify.performClick();
+        }
+
+        // 역할면에서 현재 일반모드여야 하는데, 배우가 일반모드가 아닐때
+        if (todo.isView__modifyMode() == false && viewHolder.textViewTitle.getVisibility() == View.GONE) {
+            // 강제로 수정취소버튼을 눌러서 일반모드로 바꿔준다.
+            viewHolder.btnCancelModify.performClick();
+        }
+
         return convertView;
     }
 

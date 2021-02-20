@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private TodoAdapter todoAdapter;
 
     private void addTodo(String newTodoTitle) {
-        Todo newTodo = new Todo(++todosLastId, newTodoTitle);
+        Todo newTodo = new Todo(++todosLastId, newTodoTitle, false);
         todos.add(0, newTodo);
         todoAdapter.notifyDataSetChanged();
     }
@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener onBtnShowModifyClicked = view -> {
+            int articleIndex = (int)view.getTag();
+            todos.get(articleIndex).setView__modifyMode(true);
+
             View itemView = (View) view.getParent();
 
             TextView textViewTitle = itemView.findViewById(R.id.item_todo__textViewTitle);
@@ -106,6 +109,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener onBtnModifyClicked = view -> {
+            int articleIndex = (int)view.getTag();
+            todos.get(articleIndex).setView__modifyMode(false);
+
             View itemView = (View) view.getParent();
 
             itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.VISIBLE);
@@ -119,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
         View.OnClickListener onBtnCancelModifyClicked = view -> {
+            int articleIndex = (int)view.getTag();
+            todos.get(articleIndex).setView__modifyMode(false);
+
             View itemView = (View) view.getParent();
 
             itemView.findViewById(R.id.item_todo__textViewTitle).setVisibility(View.VISIBLE);

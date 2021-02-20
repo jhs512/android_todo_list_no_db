@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class Todo {
     private int id;
     private String title;
+    private boolean view__modifyMode;
 }
